@@ -39,6 +39,6 @@ scmPlugin {
   scmVersion = "2.13.0-SNAPSHOT"
   displayName = "Markdown PlantUML Plugin"
   description = "Enables plant uml rendering in markdown files."
-  author = "Sebastian Sdorra"
+  author = "Cloudogu GmbH"
   category = "documentation"
 }
