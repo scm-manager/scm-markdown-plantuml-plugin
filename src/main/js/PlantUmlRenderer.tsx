@@ -1,16 +1,17 @@
 import React, { FC, useEffect, useState } from "react";
-import { Loading, urls } from "@scm-manager/ui-components";
+import { Loading } from "@scm-manager/ui-components";
 import { encode } from "plantuml-encoder";
 
 type Props = {
   value: string;
+  indexLinks: { [key: string]: any };
 };
 
-const PlantUmlRenderer: FC<Props> = ({ value }) => {
+const PlantUmlRenderer: FC<Props> = ({ value, indexLinks }) => {
   const [isLoading, setLoading] = useState(true);
 
   const encodedValue = encode(value);
-  const imageUrl = urls.withContextPath("/api/v2/plantuml/svg/") + encodedValue;
+  const imageUrl = indexLinks.plantUml.href.replace("{content}", encodedValue);
 
   useEffect(() => {
     const img = new Image();
