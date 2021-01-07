@@ -13,18 +13,20 @@ Enables plant uml rendering in markdown files.
 
 The plugin can be compiled and packaged with the normal maven lifecycle:
 
-* clean - `mvn clean` - removes the target directory, can be combined with other phases
-* compile - `mvn compile` - compiles Java code and creates the ui bundle
-* test - `mvn test` - executes test for Java and JavaScript
-* install - `mvn install` - installs the plugin (smp and jar) in the local maven repository
-* package - `mvn package` - creates the final plugin bundle (smp package) in the target folder
-* deploy - `mvn deploy` - deploys the plugin (smp and jar) to the configured remote repository
+* clean - `gradle clean` - deletes the build directory
+* run - `gradle run` - starts an SCM-Manager with the plugin pre installed and with livereload for the ui
+* build - `gradle build` - executes all checks, tests and builds the smp inclusive javadoc and source jar
+* test - `gradle test` - run all java tests
+* ui-test - `gradle ui-test` - run all ui tests
+* check - `gradle check` - executes all registered checks and tests (java and ui)
+* fix - `gradle fix` - fixes all fixable findings of the check task
+* smp - `gradle smp` - Builds the smp file, without the execution of checks and tests
 
-For the development and testing the `serve` lifecycle of the plugin can be used:
+For the development and testing the `run` lifecycle of the plugin can be used:
 
-* run - `mvn run` - starts scm-manager with the plugin pre installed.
+* run - `gradle run` - starts scm-manager with the plugin pre installed.
 
-If the plugin was started with `mvn run`, the default browser of the os should be automatically opened.
+If the plugin was started with `gradle run`, the default browser of the os should be automatically opened.
 If the browser does not start automatically, start it manually and go to [http://localhost:8081/scm](http://localhost:8081/scm).
 
 In this mode each change to web files (src/main/js or src/main/webapp), should trigger a reload of the browser with the made changes.
@@ -48,11 +50,14 @@ A quick look at the files and directories you'll see in a SCM-Manager project.
     |   └── target/
     ├── .editorconfig
     ├── .gitignore
+    ├── build.gradle
     ├── CHANGELOG.md
+    ├── gradle.properties
+    ├── gradlew
     ├── LICENSE
     ├── package.json
-    ├── pom.xml
     ├── README.md
+    ├── settings.gradle
     ├── tsconfig.json
     └── yarn.lock
 
@@ -72,19 +77,25 @@ A quick look at the files and directories you'll see in a SCM-Manager project.
 
 4.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
 
-5.  **`CHANGELOG.md`**: All notable changes to this project will be documented in this file.
+5.  **`build.gradle`**: Gradle build configuration, which also includes things like metadata.
 
-6.  **`LICENSE`**: This project is licensed under the MIT license.
+6.  **`CHANGELOG.md`**: All notable changes to this project will be documented in this file.
 
-7.  **`package.json`**: Here you can find the dependency/build configuration and dependencies for the frontend.
+7.  **`gradle.properties`**: Defines the module version.
 
-8.  **`pom.xml`**: Maven configuration, which also includes things like metadata.
+8.  **`gradlew`**: Bundled gradle wrapper if you dont have gradle installed.
 
-9.  **`README.md`**: This file, containing useful reference information about the project.
+9.  **`LICENSE`**: This project is licensed under the MIT license.
 
-10. **`tsconfig.json`** This is the typescript configuration file.
+10.  **`package.json`**: Here you can find the dependency/build configuration and dependencies for the frontend.
 
-11. **`yarn.lock`**: This is the ui dependency configuration.
+11.  **`README.md`**: This file, containing useful reference information about the project.
+    
+12.  **`settings.gradle`**: Gradle settings configuration.
+
+13. **`tsconfig.json`** This is the typescript configuration file.
+
+14. **`yarn.lock`**: This is the ui dependency configuration.
 
 ## Need help?
 
