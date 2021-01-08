@@ -1,7 +1,7 @@
 ---
 title: Anwendung
 ---
-Um ein [PlantUML](plantuml.com/) Diagramm anzeigen zu lassen muss lediglich ein `uml` Codeblock mit validem
+Um ein [PlantUML](plantuml.com/) Diagramm anzeigen zu lassen, muss ein `uml` Codeblock mit validem
 PlantUML in einer Markdown-Datei definiert werden.
 
 ![PlantUML Code](assets/PlantUML_Code.png)

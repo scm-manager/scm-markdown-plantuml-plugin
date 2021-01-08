@@ -14,7 +14,7 @@ Enables plant uml rendering in markdown files.
 The plugin can be compiled and packaged with the normal maven lifecycle:
 
 * clean - `gradle clean` - deletes the build directory
-* run - `gradle run` - starts an SCM-Manager with the plugin pre installed and with livereload for the ui
+* run - `gradle run` - starts an SCM-Manager with the plugin pre-installed and with livereload for the ui
 * build - `gradle build` - executes all checks, tests and builds the smp inclusive javadoc and source jar
 * test - `gradle test` - run all java tests
 * ui-test - `gradle ui-test` - run all ui tests
@@ -24,12 +24,12 @@ The plugin can be compiled and packaged with the normal maven lifecycle:
 
 For the development and testing the `run` lifecycle of the plugin can be used:
 
-* run - `gradle run` - starts scm-manager with the plugin pre installed.
+* run - `gradle run` - starts scm-manager with the plugin pre-installed.
 
 If the plugin was started with `gradle run`, the default browser of the os should be automatically opened.
 If the browser does not start automatically, start it manually and go to [http://localhost:8081/scm](http://localhost:8081/scm).
 
-In this mode each change to web files (src/main/js or src/main/webapp), should trigger a reload of the browser with the made changes.
+In this mode each change to web files (src/main/js or src/main/webapp), should trigger reload of the browser with the made changes.
 If you compile a class (e.g.: with your IDE from src/main/java to target/classes), 
 the SCM-Manager context will restart automatically. So you can see your changes without restarting the server.
 
@@ -61,13 +61,13 @@ A quick look at the files and directories you'll see in a SCM-Manager project.
     ├── tsconfig.json
     └── yarn.lock
 
-1.  **`node_modules/`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+1.  **`node_modules/`**: This directory contains all modules of code that your project depends on (npm packages) are automatically installed.
 
-2.  **`src/`**: This directory will contain all of the code related to what you see or not. `src` is a convention for “source code”.
+2.  **`src/`**: This directory will contain all code related to what you see or not. `src` is a convention for “source code”.
     1. **`main/`**
-        1. **`java/`**: This directory contain the Java code.
+        1. **`java/`**: This directory contains the Java code.
         2. **`js/`**: This directory contains the JavaScript code for the web ui, inclusive unit tests: suffixed with `.test.ts`
-        3. **`resources/`**: This directory contains the the classpath resources.
+        3. **`resources/`**: This directory contains the classpath resources.
     2. **`test/`**
         1. **`java/`**: This directory contains the Java unit tests.
         3. **`resources/`**: This directory contains classpath resources for unit tests.
@@ -83,7 +83,7 @@ A quick look at the files and directories you'll see in a SCM-Manager project.
 
 7.  **`gradle.properties`**: Defines the module version.
 
-8.  **`gradlew`**: Bundled gradle wrapper if you dont have gradle installed.
+8.  **`gradlew`**: Bundled gradle wrapper if you don`t have gradle installed.
 
 9.  **`LICENSE`**: This project is licensed under the MIT license.
 
