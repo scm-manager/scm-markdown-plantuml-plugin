@@ -23,7 +23,7 @@
  */
 
 import React, { FC, useEffect, useState } from "react";
-import { Loading } from "@scm-manager/ui-components";
+import { ErrorNotification, Loading, apiClient } from "@scm-manager/ui-components";
 import { encode } from "plantuml-encoder";
 
 type Props = {
@@ -33,15 +33,24 @@ type Props = {
 
 const PlantUmlRenderer: FC<Props> = ({ value, indexLinks }) => {
   const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
+  const [imageDataUrl, setImageDataUrl] = useState<string | undefined>();
 
   const encodedValue = encode(value);
-  const imageUrl = indexLinks.plantUml.href.replace("{content}", encodedValue);
+  const renderUrl = indexLinks.plantUml.href.replace("{content}", encodedValue);
 
   useEffect(() => {
-    const img = new Image();
-    img.src = imageUrl;
-    img.onload = () => setLoading(false);
-  }, [imageUrl]);
+    apiClient
+      .get(renderUrl)
+      .then(response => response.text())
+      .then(result => setImageDataUrl(`data:image/svg+xml;base64,${btoa(result)}`))
+      .catch(e => setError(e))
+      .finally(() => setLoading(false));
+  }, [renderUrl]);
+
+  if (error) {
+    return <ErrorNotification error={error} />;
+  }
 
   if (isLoading) {
     return <Loading />;
@@ -49,7 +58,7 @@ const PlantUmlRenderer: FC<Props> = ({ value, indexLinks }) => {
 
   return (
     <figure className="image">
-      <img src={imageUrl} alt="plantuml" />
+      <img src={imageDataUrl} alt="plantuml" />
     </figure>
   );
 };

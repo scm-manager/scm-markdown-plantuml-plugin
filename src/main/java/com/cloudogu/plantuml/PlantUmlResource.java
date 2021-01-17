@@ -37,6 +37,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
 @AllowAnonymousAccess
@@ -51,9 +52,13 @@ public class PlantUmlResource {
     final TranscoderSmart transcoder = new TranscoderSmart();
     final String decode = transcoder.decode(encodedContent);
 
-    SourceStringReader reader = new SourceStringReader(decode);
-    final StreamingOutput streamingOutput = outputStream -> reader.generateImage(outputStream, new FileFormatOption(FileFormat.SVG));
-    return Response.ok(streamingOutput).lastModified(new Date()).header("Cache-Control", "public, max-age=31536000").build();
+    try {
+      SourceStringReader reader = new SourceStringReader(decode);
+      final StreamingOutput streamingOutput = outputStream -> reader.generateImage(outputStream, new FileFormatOption(FileFormat.SVG));
+      return Response.ok(streamingOutput).lastModified(new Date()).header("Cache-Control", "public, max-age=31536000").build();
+    } catch (Exception e) {
+      throw new PlantUMLRenderException();
+    }
   }
 
 }
