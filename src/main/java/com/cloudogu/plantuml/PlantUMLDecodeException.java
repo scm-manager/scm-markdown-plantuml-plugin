@@ -24,22 +24,19 @@
 
 package com.cloudogu.plantuml;
 
-import sonia.scm.ExceptionWithContext;
-
-import java.util.Optional;
+import sonia.scm.BadRequestException;
 
 import static sonia.scm.ContextEntry.ContextBuilder.entity;
 
 @SuppressWarnings("java:S110") // many parent are kind of normal for exceptions
-public class PlantUMLRenderException extends ExceptionWithContext {
+public class PlantUMLDecodeException extends BadRequestException {
 
-  private static final String CODE = "7sSM9vTMp1";
-  private static final String URL = "https://scm-manager.org/plugins/scm-markdown-plantuml-plugin/";
+  private static final String CODE = "6ISMX03n61";
 
-  PlantUMLRenderException(Exception cause) {
+  PlantUMLDecodeException(Exception cause) {
     super(
       entity("Format", "svg").in("Image", "PlantUML").build(),
-      "error rendering plant uml",
+      "Failed to decode plantuml",
       cause
     );
   }
@@ -47,10 +44,5 @@ public class PlantUMLRenderException extends ExceptionWithContext {
   @Override
   public String getCode() {
     return CODE;
-  }
-
-  @Override
-  public Optional<String> getUrl() {
-    return Optional.of(URL);
   }
 }
