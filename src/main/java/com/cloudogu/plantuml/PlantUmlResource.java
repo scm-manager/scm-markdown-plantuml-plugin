@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package com.cloudogu.plantuml;
 
 import net.sourceforge.plantuml.FileFormat;
@@ -37,7 +36,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
 @AllowAnonymousAccess
@@ -57,7 +55,7 @@ public class PlantUmlResource {
       final StreamingOutput streamingOutput = outputStream -> reader.generateImage(outputStream, new FileFormatOption(FileFormat.SVG));
       return Response.ok(streamingOutput).lastModified(new Date()).header("Cache-Control", "public, max-age=31536000").build();
     } catch (Exception e) {
-      throw new PlantUMLRenderException();
+      throw new PlantUMLRenderException(e);
     }
   }
 
