@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-import {binder} from "@scm-manager/ui-extensions";
+import { binder } from "@scm-manager/ui-extensions";
 import PlantUmlRenderer from "./PlantUmlRenderer";
 
 binder.bind("markdown-renderer.code.uml", PlantUmlRenderer);

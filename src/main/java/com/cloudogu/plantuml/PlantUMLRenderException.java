@@ -22,45 +22,35 @@
  * SOFTWARE.
  */
 
-import React, { FC, useEffect, useState } from "react";
-import { ErrorNotification, Loading, apiClient } from "@scm-manager/ui-components";
-import { encode } from "plantuml-encoder";
+package com.cloudogu.plantuml;
 
-type Props = {
-  value: string;
-  indexLinks: { [key: string]: any };
-};
+import sonia.scm.ExceptionWithContext;
 
-const PlantUmlRenderer: FC<Props> = ({ value, indexLinks }) => {
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
-  const [imageDataUrl, setImageDataUrl] = useState<string | undefined>();
+import java.util.Optional;
 
-  const encodedValue = encode(value);
-  const renderUrl = indexLinks.plantUml.href.replace("{content}", encodedValue);
+import static sonia.scm.ContextEntry.ContextBuilder.entity;
 
-  useEffect(() => {
-    apiClient
-      .get(renderUrl)
-      .then(response => response.text())
-      .then(result => setImageDataUrl(`data:image/svg+xml;base64,${btoa(result)}`))
-      .catch(e => setError(e))
-      .finally(() => setLoading(false));
-  }, [renderUrl]);
+@SuppressWarnings("java:S110") // many parent are kind of normal for exceptions
+public class PlantUMLRenderException extends ExceptionWithContext {
 
-  if (error) {
-    return <ErrorNotification error={error} />;
+  private static final String CODE = "7sSM9vTMp1";
+  private static final String URL = "https://scm-manager.org/plugins/scm-markdown-plantuml-plugin/";
+
+  PlantUMLRenderException(Exception cause) {
+    super(
+      entity("Format", "svg").in("Image", "PlantUML").build(),
+      "error rendering plant uml",
+      cause
+    );
   }
 
-  if (isLoading) {
-    return <Loading />;
+  @Override
+  public String getCode() {
+    return CODE;
   }
 
-  return (
-    <figure className="image">
-      <img src={imageDataUrl} alt="plantuml" />
-    </figure>
-  );
-};
-
-export default PlantUmlRenderer;
+  @Override
+  public Optional<String> getUrl() {
+    return Optional.of(URL);
+  }
+}

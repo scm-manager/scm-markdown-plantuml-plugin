@@ -9,6 +9,12 @@
 
 Enables plant uml rendering in markdown files.
 
+## Prerequisites
+
+A valid font has to be installed on the host machine for the rendering to work.
+
+> **Hint:** Our official Docker images already come with a preinstalled font.
+
 ## Build and testing
 
 The plugin can be compiled and packaged with the normal maven lifecycle:

@@ -1,5 +1,11 @@
 {
   "scm-markdown-plantuml-plugin": {
-
+    "error": "Plant UML Diagramm konnte nicht geladen werden"
+  },
+  "errors": {
+    "7sSM9vTMp1": {
+      "displayName": "Plant UML Renderfehler",
+      "description": "Der Server konnte das beschriebene Diagramm nicht rendern. Es könnte sein, dass keine Fonts auf dem Server installiert sind."
+    }
   }
 }

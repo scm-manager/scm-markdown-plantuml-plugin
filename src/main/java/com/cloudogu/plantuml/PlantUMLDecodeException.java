@@ -22,45 +22,27 @@
  * SOFTWARE.
  */
 
-import React, { FC, useEffect, useState } from "react";
-import { ErrorNotification, Loading, apiClient } from "@scm-manager/ui-components";
-import { encode } from "plantuml-encoder";
+package com.cloudogu.plantuml;
 
-type Props = {
-  value: string;
-  indexLinks: { [key: string]: any };
-};
+import sonia.scm.BadRequestException;
 
-const PlantUmlRenderer: FC<Props> = ({ value, indexLinks }) => {
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
-  const [imageDataUrl, setImageDataUrl] = useState<string | undefined>();
+import static sonia.scm.ContextEntry.ContextBuilder.entity;
 
-  const encodedValue = encode(value);
-  const renderUrl = indexLinks.plantUml.href.replace("{content}", encodedValue);
+@SuppressWarnings("java:S110") // many parent are kind of normal for exceptions
+public class PlantUMLDecodeException extends BadRequestException {
 
-  useEffect(() => {
-    apiClient
-      .get(renderUrl)
-      .then(response => response.text())
-      .then(result => setImageDataUrl(`data:image/svg+xml;base64,${btoa(result)}`))
-      .catch(e => setError(e))
-      .finally(() => setLoading(false));
-  }, [renderUrl]);
+  private static final String CODE = "6ISMX03n61";
 
-  if (error) {
-    return <ErrorNotification error={error} />;
+  PlantUMLDecodeException(Exception cause) {
+    super(
+      entity("Format", "svg").in("Image", "PlantUML").build(),
+      "Failed to decode plantuml",
+      cause
+    );
   }
 
-  if (isLoading) {
-    return <Loading />;
+  @Override
+  public String getCode() {
+    return CODE;
   }
-
-  return (
-    <figure className="image">
-      <img src={imageDataUrl} alt="plantuml" />
-    </figure>
-  );
-};
-
-export default PlantUmlRenderer;
+}
