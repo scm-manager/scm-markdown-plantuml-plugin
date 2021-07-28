@@ -43,4 +43,5 @@ scmPlugin {
   description = "Enables plant uml rendering in markdown files."
   author = "Cloudogu GmbH"
   category = "Documentation"
+  avatarUrl = '/images/markdown-plantuml-logo.png'
 }
