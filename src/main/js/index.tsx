@@ -26,3 +26,4 @@ import { binder } from "@scm-manager/ui-extensions";
 import PlantUmlRenderer from "./PlantUmlRenderer";
 
 binder.bind("markdown-renderer.code.uml", PlantUmlRenderer);
+binder.bind("markdown-renderer.code.plantuml", PlantUmlRenderer);
