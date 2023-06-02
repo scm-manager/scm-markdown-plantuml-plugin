@@ -23,11 +23,11 @@
  */
 
 plugins {
-  id 'org.scm-manager.smp' version '0.10.1'
+  id 'org.scm-manager.smp' version '0.15.0'
 }
 
 dependencies {
-  implementation 'net.sourceforge.plantuml:plantuml:8059'
+  implementation 'net.sourceforge.plantuml:plantuml-mit:1.2023.8'
 }
 
 repositories {
