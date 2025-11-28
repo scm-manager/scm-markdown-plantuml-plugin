@@ -19,7 +19,7 @@ plugins {
 }
 
 dependencies {
-  implementation 'net.sourceforge.plantuml:plantuml-mit:1.2023.8'
+  implementation 'net.sourceforge.plantuml:plantuml-mit:1.2025.10'
 }
 
 repositories {
