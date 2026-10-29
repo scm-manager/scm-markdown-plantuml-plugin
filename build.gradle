@@ -27,7 +27,7 @@ repositories {
 }
 
 scmPlugin {
-  scmVersion = "3.0.0"
+  scmVersion = "4.0.0-SNAPSHOT"
   displayName = "Markdown PlantUML"
   description = "Enables plant uml rendering in markdown files."
   author = "Cloudogu GmbH"

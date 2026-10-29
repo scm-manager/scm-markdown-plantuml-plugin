@@ -15,7 +15,8 @@
  */
 
 import React, { FC, useEffect, useState } from "react";
-import { ErrorNotification, Loading, apiClient } from "@scm-manager/ui-components";
+import { apiClient } from "@scm-manager/ui-components";
+import { ErrorNotification, Loading } from "@scm-manager/ui-core";
 import { encode } from "plantuml-encoder";
 
 type Props = {
